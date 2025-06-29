@@ -15,6 +15,7 @@
 - genera password sicure in base alle preferenze dell’utente  
 - calcola l’entropia stimata (in bit) per valutarne la robustezza  
 - sfrutta il modulo `secrets`, raccomandato per la generazione crittografica
+- consente di specificare la lunghezza da 8 a 64 caratteri (anche interattivamente)
 
 👤 Utile per sysadmin, sviluppatori, ingegneri della sicurezza informatica o chiunque voglia password robuste.
 
@@ -27,6 +28,7 @@
 - generates strong passwords based on user-selected preferences  
 - computes the estimated entropy (in bits) to evaluate strength  
 - uses Python’s `secrets` module for cryptographically secure randomness
+- allows selecting a password length between 8 and 64 (also interactively)
 
 👤 Useful for sysadmins, developers, cybersecurity engineers, or anyone needing strong passwords.
 
