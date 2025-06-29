@@ -1,0 +1,20 @@
+# Ignora i file di Docker stessi
+Dockerfile
+.dockerignore
+
+# Ignora la cartella di Git
+.git
+.gitignore
+
+# Ignora le cartelle della cache di Python e gli ambienti virtuali
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv
+env/
+
+# Ignora i file di configurazione degli editor
+.idea/
+.vscode/
