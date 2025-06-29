@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EntropyPass - Generatore di Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 EntropyPass</h1>
+            <p>Genera password sicure con un'interfaccia web.</p>
+        </header>
+
+        <form action="/" method="post" class="options-form">
+            <div class="form-group length-group">
+                <label for="length">Lunghezza:</label>
+                <input type="number" id="length" name="length" min="8" max="64" value="{{ form_values.get('length', 16) }}">
+            </div>
+
+            <div class="form-group checkboxes">
+                <label><input type="checkbox" name="use_lower" {{ 'checked' if form_values.get('use_lower') }}> Minuscole (abc)</label>
+                <label><input type="checkbox" name="use_upper" {{ 'checked' if form_values.get('use_upper') }}> Maiuscole (ABC)</label>
+                <label><input type="checkbox" name="use_digits" {{ 'checked' if form_values.get('use_digits') }}> Cifre (123)</label>
+                <label><input type="checkbox" name="use_symbols" {{ 'checked' if form_values.get('use_symbols') }}> Simboli (#?!)</label>
+                <label><input type="checkbox" name="no_ambiguous" {{ 'checked' if form_values.get('no_ambiguous') }}> Escludi ambigui (l, 1, O, 0)</label>
+            </div>
+
+            <button type="submit">Genera Password</button>
+        </form>
+
+        {% if error %}
+            <div class="result error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        {% if password_data %}
+            <div class="result">
+                <h2>Password Generata:</h2>
+                <div class="password-box">
+                    <input type="text" value="{{ password_data.password }}" id="password-output" readonly>
+                    <button type="button" onclick="copyPassword()">Copia</button>
+                </div>
+                <p class="entropy">
+                    🧮 Entropia: {{ password_data.entropy }} bit ({{ password_data.strength }})
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function copyPassword() {
+            const passwordInput = document.getElementById('password-output');
+            passwordInput.select();
+            passwordInput.setSelectionRange(0, 99999); // For mobile devices
+            try {
+                navigator.clipboard.writeText(passwordInput.value);
+                alert('Password copiata negli appunti!');
+            } catch (err) {
+                // Fallback per browser più vecchi
+                document.execCommand('copy');
+                alert('Password copiata (fallback)!');
+            }
+        }
+    </script>
+</body>
+</html>
