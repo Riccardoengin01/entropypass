@@ -1,0 +1,11 @@
+EntropyPass example output
+==========================
+
+Generated Password: 9Lh@ZrY2xF!eUb7q1D
+Entropy (bits): 103.5
+Options used:
+- Length: 20
+- Symbols: ✅
+- Digits: ✅
+- Uppercase: ✅
+- Lowercase: ✅
